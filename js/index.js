@@ -1,28 +1,30 @@
 "use strict";
 
 /*
-===== 步骤 =====
+===== 测试步骤 =====
 1. createVNode(h) 函数类似 Vue 的 h 函数, 传入3个参数(标签名, 属性集合, 子节点)
 2. createVNode(h) 函数执行后返回一个 VirtualDOM
 3. createRNode 函数可以把 VirtualDOM 转化为真实的 DOM 元素
 4. mount 函数可以把 创建出来的 DOM 元素挂载页面指定的元素中
+
 ---> 内容更新后 ---> 比较新老VirtualDOM差异
+
 5. diff: 比较新老VirtualDOM差异获得 patches
 6. patch: 根据获得的 patches 去更新 realDOM
 
 
 将以下html转化成VNode
 <ul class="list" style="width: 300px; height: 300px; border: 1px solid #f00; color: #555;">
-  <li class="item" data-index="1"><p class="title">第1个列表项</p></li>
-  <li class="item" data-index="2"><p class="text"><span class="title">第2个列表项</span></p></li>
-  <li class="item" data-index="3">第3个列表项</li>
+  <li class="item"><p class="title">第1个列表项</p></li>
+  <li class="item"><p class="text"><span class="title">第2个列表项</span></p></li>
+  <li class="item">第3个列表项</li>
 </ul>
 
 模拟内容修改: 直接修改VNode, 然后去对比
 <ul class="list-wrapper" style="width: 300px; height: 300px; border: 1px solid #555; color:#f00;">
-  <li class="item active" data-index="1"><p class="text">第1个列表项</p></li>
-  <li class="item" data-index="2"><p class="text"></p></li>
-  <li class="item" data-index="3">这是第3个被修改后的列表项内容</li>
+  <li class="item active"><p class="text">第1个列表项</p></li>
+  <li class="item"><p class="text"></p></li>
+  <li class="item">这是第3个被修改后的列表项内容</li>
 </ul>
 
 1. ul class 被修改了, style 被修改了
